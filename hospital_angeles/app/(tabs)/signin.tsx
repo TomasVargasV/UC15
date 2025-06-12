@@ -3,19 +3,20 @@ import { useState } from 'react';
 import { StyleSheet, View, Image, Text, TextInput, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function LoginScreen() {
+export default function SigninScreen() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [estado, setEstado] = useState('');
     const router = useRouter();
 
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.header}>
-                <Image source={{ uri: 'https://en.drdavidvallebueno.com/wp-content/uploads/logo-HA.png' }} style={styles.logo} />
-                <Text style={styles.greeting}>Seja bem vindo!</Text>
-                <Text style={styles.greetingSubtext}>Insira sua conta para entrar:</Text>
-            </View>
             <View>
+                <View style={styles.header}>
+                    <Image source={{ uri: 'https://en.drdavidvallebueno.com/wp-content/uploads/logo-HA.png' }} style={styles.logo} />
+                    <Text style={styles.greetingSubtext}>Conclua seu cadastro conosco:</Text>
+                </View>
                 <TextInput
                     style={styles.input}
                     placeholder="Email"
@@ -31,15 +32,23 @@ export default function LoginScreen() {
                     value={password}
                     onChangeText={setPassword}
                 />
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Entrar</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={styles.signinSection}>
-                <Text style={styles.signupText}>Não tem uma conta?</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="CPF"
+                    secureTextEntry
+                    value={cpf}
+                    onChangeText={setCpf}
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Estado"
+                    secureTextEntry
+                    value={estado}
+                    onChangeText={setEstado}
+                />
                 <TouchableOpacity
                     style={styles.signupButton}
-                    onPress={() => router.push('/signin')}
+                    onPress={() => router.push('/inicio')}
                 >
                     <Text style={styles.signupButtonText}>Cadastre-se</Text>
                 </TouchableOpacity>
@@ -71,21 +80,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center',
     },
-    greeting: {
-        display: 'flex',
-        alignItems: 'center',
-        alignSelf: 'center',
-        height: 50,
-        marginTop: 40,
-        fontSize: 40,
-        color: 'blue'
-    },
     greetingSubtext: {
         display: 'flex',
         alignItems: 'center',
         alignSelf: 'center',
         height: 50,
-        marginTop: 15,
+        marginTop: 40,
         fontSize: 25,
         color: 'blue'
     },
@@ -98,31 +98,14 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         backgroundColor: '#f9f9f9',
     },
-    button: {
-        backgroundColor: '#0066cc',
-        padding: 15,
-        borderRadius: 8,
-        alignItems: 'center',
-    },
-    buttonText: {
-        color: '#fff',
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-    signinSection: {
-        marginTop: 30,
-        alignItems: 'center',
-    },
-    signupText: {
-        fontSize: 14,
-        color: '#555',
-        marginBottom: 8,
-    },
     signupButton: {
         paddingVertical: 10,
         paddingHorizontal: 20,
         borderRadius: 8,
         backgroundColor: 'blue',
+        alignSelf: 'center',
+        alignItems: 'center',
+        width: 200
     },
     signupButtonText: {
         color: 'white',
